@@ -1,22 +1,53 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import TaskListContainer from '@/components/task/taskList/taskListContainer'
-import LoginContainer from '@/components/login/loginContainer'
+import Vue from 'vue';
+import Router from 'vue-router';
 
-Vue.use(Router)
+import TaskListContainer from '@/components/task/taskList/TaskListContainer';
+import LoginContainer from '@/components/login/LoginContainer';
+import RegisterContainer from '@/components/register/RegisterContainer';
+import store from '@/store/index';
+import Routes from '@/constants/routeConstants';
 
-export default new Router({
+Vue.use(Router);
+
+const beforeEachHandler = (to, from, next) => {
+  const isAuthenticated = store.state.auth.isAuthenticated;
+
+  if (Object.values(Routes.AUTH_ROUTES).includes(to.fullPath) && isAuthenticated) {
+    if (from.name === null) {
+      next(Routes.PROTECTED_ROUTES.HOME);
+    }
+
+    next(false);
+  }
+
+  if (Object.values(Routes.PROTECTED_ROUTES).includes(to.fullPath) && !isAuthenticated) {
+    if (from.name === null) {
+      next(Routes.AUTH_ROUTES.LOG_IN);
+    }
+
+    next(false);
+  }
+
+  next();
+};
+
+const router = new Router({
   mode: 'history',
   routes: [
     {
-      path: '/',
-      name: 'HelloWorld',
+      path: Routes.PROTECTED_ROUTES.HOME,
+      name: 'Home',
       component: TaskListContainer
     },
     {
-      path: '/login',
-      name: 'LoginContainer',
+      path: Routes.AUTH_ROUTES.LOG_IN,
+      name: 'Login',
       component: LoginContainer
+    },
+    {
+      path: Routes.AUTH_ROUTES.REGISTER,
+      name: 'Register',
+      component: RegisterContainer
     }
     // {
     //   path: '*',
@@ -24,4 +55,8 @@ export default new Router({
     //   component: NotFound
     // }
   ]
-})
+});
+
+router.beforeEach(beforeEachHandler);
+
+export default router;

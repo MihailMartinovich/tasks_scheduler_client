@@ -12,9 +12,12 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {},
 
+
+
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+    apiPort: 4000,
     autoOpenBrowser: false,
     errorOverlay: true,
     notifyOnErrors: true,
@@ -38,7 +41,7 @@ module.exports = {
     // If you have problems debugging vue-files in devtools,
     // set this to false - it *may* help
     // https://vue-loader.vuejs.org/en/options.html#cachebusting
-    cacheBusting: true,
+    cacheBusting: false,
 
     cssSourceMap: true
   },

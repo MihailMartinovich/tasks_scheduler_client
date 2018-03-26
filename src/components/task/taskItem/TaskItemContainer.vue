@@ -1,12 +1,12 @@
 <template>
-  <div class="task-container">
+  <div class="task-item-container">
     <h3>{{ msg }}</h3>
     <TaskItem />
   </div>
 </template>
 
 <script>
-import TaskItem from './TaskItem'
+import TaskItem from './TaskItem';
 
 export default {
   name: 'TaskItemContainer',
@@ -14,12 +14,14 @@ export default {
   data () {
     return {
       msg: 'Task Item Container'
-    }
+    };
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.task-item-container {
 
+}
 </style>

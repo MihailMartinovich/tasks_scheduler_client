@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import TaskListItem from './TaskListItem'
+import TaskListItem from './TaskListItem';
 
 export default {
   name: 'TaskListItemContainer',
@@ -11,9 +11,9 @@ export default {
   data () {
     return {
       msg: 'Task List Item Container'
-    }
+    };
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

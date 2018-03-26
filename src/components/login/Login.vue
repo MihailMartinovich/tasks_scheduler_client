@@ -1,10 +1,31 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <label>email</label>
-    <input/>
-    <label>password</label>
-    <input/>
+  <div class="login">
+    <b-form @submit="onFormSubmit">
+      <b-form-group id="loginEmailInputGroup"
+                    label="Email address:"
+                    label-for="loginEmailInput"
+                    description="We'll never share your email with anyone else.">
+      <b-form-input id="loginEmailInput"
+                    placeholder="Enter Email"
+                    required
+                    type="email"
+                    v-model="form.email"
+      />
+      </b-form-group>
+
+      <b-form-group id="loginPasswordInputGroup"
+                    label="Password:"
+                    label-for="loginPasswordInput">
+        <b-form-input id="loginPasswordInput"
+                      placeholder="Enter Password"
+                      required
+                      type="password"
+                      v-model="form.password"
+        />
+      </b-form-group>
+      <b-button type="submit" variant="primary">Submit</b-button>
+      <b-button type="reset" variant="danger">Reset</b-button>
+    </b-form>
   </div>
 </template>
 
@@ -13,10 +34,20 @@ export default {
   name: 'Login',
   data () {
     return {
-      msg: 'Login'
+      form: {
+        email: '',
+        password: ''
+      }
+    };
+  },
+  props: ['onSubmit'],
+  methods: {
+    onFormSubmit: function (e) {
+      e.preventDefault();
+      this.$props.onSubmit(this.$data.form);
     }
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import TaskList from './TaskList'
+import TaskList from './TaskList';
 
 export default {
   name: 'TaskListContainer',
@@ -14,12 +14,19 @@ export default {
   data () {
     return {
       msg: 'Task List Container'
-    }
+    };
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+#taskListContainer {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+}
 </style>

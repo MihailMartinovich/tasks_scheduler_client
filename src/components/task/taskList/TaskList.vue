@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import TaskListItemContainer from '../taskListItem/TaskListItemContainer'
+import TaskListItemContainer from '../taskListItem/TaskListItemContainer';
 
 export default {
   name: 'TaskList',
@@ -17,9 +17,9 @@ export default {
     return {
       msg: 'Task List',
       listItems: [1, 2, 3, 4, 5, 6, 7, 8]
-    }
+    };
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -27,6 +27,6 @@ export default {
 .task-list {
   display: flex;
   flex-direction: row;
-  overflow-y: auto;
+  padding-bottom: 20px;
 }
 </style>

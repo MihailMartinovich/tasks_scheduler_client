@@ -1,19 +1,19 @@
 <template>
-  <div class="hello">
-    <Login :on-submit="onSubmit"/>
+  <div class="register-container">
+    <Register :on-submit="onSubmit"/>
   </div>
 </template>
 
 <script>
-import Login from './Login.vue';
+import Register from './Register.vue';
 import ActionTypes from '@/constants/actionTypesConstants';
 
 export default {
-  name: 'LoginContainer',
-  components: { Login },
+  name: 'RegisterContainer',
+  components: { Register },
   methods: {
     onSubmit (data) {
-      this.$store.dispatch(ActionTypes.LOG_IN_USER, data);
+      this.$store.dispatch(ActionTypes.REGISTER_USER, data);
     }
   }
 };
