@@ -1,6 +1,12 @@
 <template>
   <div class="task-list-item">
-    <h2>{{ msg }}</h2>
+    <h2>{{ board.title }}
+      <b-button type="button"
+                variant="danger"
+                @click="onBoardDelete">
+        delete
+      </b-button>
+    </h2>
     <TaskItemContainer  />
   </div>
 </template>
@@ -9,12 +15,13 @@
 import TaskItemContainer from '../taskItem/TaskItemContainer';
 
 export default {
-  name: 'TaskListItem',
+  name: 'Board',
   components: { TaskItemContainer },
-  data () {
-    return {
-      msg: 'Task List Item'
-    };
+  props: ['board', 'onDelete'],
+  methods: {
+    onBoardDelete (e) {
+      this.$props.onDelete(this.board._id);
+    }
   }
 };
 </script>

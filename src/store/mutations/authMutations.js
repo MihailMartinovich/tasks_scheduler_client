@@ -1,5 +1,4 @@
 import MutationTypes from '@/constants/mutationTypesConstants';
-import AuthState from '../state/authState';
 
 export default {
   [MutationTypes.SET_AUTH_DATA]: (state, data) => {

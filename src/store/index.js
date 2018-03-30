@@ -5,7 +5,12 @@ import VuexPersist from 'vuex-persist';
 import AuthState from './state/authState';
 import AuthActions from './actions/AuthActions';
 import AuthMutations from './mutations/authMutations';
+
 import CommonActions from './actions/commonActions';
+
+import BoardState from './state/boardState';
+import BoardActions from './actions/boardActions';
+import BoardMutations from './mutations/boardMutations';
 
 Vue.use(Vuex);
 
@@ -20,14 +25,17 @@ const vuexLocalStorage = new VuexPersist({
 
 const store = new Vuex.Store({
   state: {
-    ...AuthState
+    ...AuthState,
+    ...BoardState
   },
   mutations: {
-    ...AuthMutations
+    ...AuthMutations,
+    ...BoardMutations
   },
   actions: {
     ...AuthActions,
-    ...CommonActions
+    ...CommonActions,
+    ...BoardActions
   },
   getters: {},
   plugins: [vuexLocalStorage.plugin]

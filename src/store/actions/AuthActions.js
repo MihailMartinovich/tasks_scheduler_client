@@ -1,13 +1,11 @@
-import axios from 'axios';
-
 import ActionTypes from '@/constants/actionTypesConstants';
 import MutationTypes from '@/constants/mutationTypesConstants';
-import Api from '@/constants/apiConstants';
 import Routes from '@/constants/routeConstants';
+import AuthApiService from '@/apiServices/authApiService';
 
 export default {
   [ActionTypes.LOG_IN_USER]: (context, data) => {
-    axios.post(Api.SIGN_IN, data)
+    AuthApiService.signInUser(data)
       .then(response => {
         context.commit(MutationTypes.SET_AUTH_DATA, response.data);
         context.dispatch(ActionTypes.REDIRECT_TO, Routes.PROTECTED_ROUTES.HOME);
@@ -17,7 +15,7 @@ export default {
       });
   },
   [ActionTypes.REGISTER_USER]: (context, data) => {
-    axios.post(Api.SIGN_IN, data)
+    AuthApiService.signUpUser(data)
       .then(response => {
         context.commit(MutationTypes.SET_AUTH_DATA, response.data);
         context.dispatch(ActionTypes.REDIRECT_TO, Routes.PROTECTED_ROUTES.HOME);

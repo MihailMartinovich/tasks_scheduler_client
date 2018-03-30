@@ -8,9 +8,9 @@
 </template>
 
 <script>
-  import ActionTypes from '@/constants/actionTypesConstants';
+import ActionTypes from '@/constants/actionTypesConstants';
 
-  export default {
+export default {
   name: 'TheHeader',
   computed: {
     username () {

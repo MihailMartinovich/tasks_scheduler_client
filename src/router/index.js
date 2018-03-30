@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import TaskListContainer from '@/components/task/taskList/TaskListContainer';
+import BoardListContainer from '@/components/task/boardList/BoardListContainer';
 import LoginContainer from '@/components/login/LoginContainer';
 import RegisterContainer from '@/components/register/RegisterContainer';
 import store from '@/store/index';
@@ -37,7 +37,7 @@ const router = new Router({
     {
       path: Routes.PROTECTED_ROUTES.HOME,
       name: 'Home',
-      component: TaskListContainer
+      component: BoardListContainer
     },
     {
       path: Routes.AUTH_ROUTES.LOG_IN,
