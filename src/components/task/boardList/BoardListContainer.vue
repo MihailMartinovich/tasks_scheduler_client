@@ -8,9 +8,13 @@
         Add new list
       </b-button>
       <AddNewBoardModal :id="'AddNewBoardModal'"
-                        :title="modalTitle"
+                        :title="addBoardModalTitle"
                         :onSubmit="addNewBoard">
       </AddNewBoardModal>
+      <AddNewTaskModal :id="'AddNewTaskModal'"
+                       :title="addTaskModalTitle"
+                       :onSubmit="addNewTask"
+                       ref="addNewTaskModal"/>
     </div>
     <BoardList />
   </div>
@@ -19,24 +23,34 @@
 <script>
 import BoardList from './BoardList';
 import AddNewBoardModal from '../addNewBoardModal/AddNewBoardModal';
+import AddNewTaskModal from '../addNewTaskModal/AddNewTaskModal.vue';
 import ActionTypes from '@/constants/actionTypesConstants';
+import { EventBus } from '../../../services/eventBus';
 
 export default {
   name: 'BoardListContainer',
-  components: { BoardList, AddNewBoardModal },
+  components: { BoardList, AddNewBoardModal, AddNewTaskModal },
   data () {
     return {
       title: 'Board List Container',
-      modalTitle: 'Add new board'
+      addBoardModalTitle: 'Add new board',
+      addTaskModalTitle: 'Add new task'
     };
   },
   methods: {
     addNewBoard: function (data) {
       return this.$store.dispatch(ActionTypes.ADD_NEW_BOARD, data);
+    },
+    addNewTask: function (data) {
+      return this.$store.dispatch(ActionTypes.ADD_NEW_TASK, data);
+    },
+    openAddNewTaskModal: function (data) {
+      this.$refs.addNewTaskModal.showModal(data);
     }
   },
   created () {
     this.$store.dispatch(ActionTypes.GET_ALL_BOARDS);
+    EventBus.$on('openAddNewTaskModal', this.openAddNewTaskModal);
   }
 };
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <b-form @submit="onFormSubmit">
+    <b-form @submit.prevent="onFormSubmit">
       <b-form-group id="loginEmailInputGroup"
                     label="Email address:"
                     label-for="loginEmailInput"
@@ -43,7 +43,6 @@ export default {
   props: ['onSubmit'],
   methods: {
     onFormSubmit: function (e) {
-      e.preventDefault();
       this.$props.onSubmit(this.$data.form);
     }
   }

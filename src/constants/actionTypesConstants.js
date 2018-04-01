@@ -13,5 +13,11 @@ module.exports = {
   ADD_NEW_BOARD: 'addNewBoard',
   GET_ALL_BOARDS: 'getAllBoards',
   GET_BOARD: 'getBoard',
-  DELETE_BOARD: 'deleteBoard'
+  DELETE_BOARD: 'deleteBoard',
+
+  // Task Action
+  ADD_NEW_TASK: 'addNewTask',
+  GET_ALL_TASKS: 'getAllTasks',
+  GET_TASK: 'getTask',
+  DELETE_TASK: 'deleteTask'
 };

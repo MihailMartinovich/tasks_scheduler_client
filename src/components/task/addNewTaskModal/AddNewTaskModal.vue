@@ -3,13 +3,13 @@
     <b-modal :id="id"
              :title="title"
              hide-footer
-             ref="AddNewBoardRef">
+             ref="AddNewTaskRef">
       <div class="d-block">
         <b-form>
-          <b-form-group id="addNewBoardTitleGroup"
+          <b-form-group id="AddNewTaskTitleGroup"
                         label="Title:"
-                        label-for="addNewBoardTitle">
-            <b-form-input id="addNewBoardTitle"
+                        label-for="AddNewTaskTitle">
+            <b-form-input id="AddNewTaskTitle"
                           autofocus
                           placeholder="Please enter title"
                           required
@@ -17,10 +17,10 @@
                           v-model="form.title"
             />
           </b-form-group>
-          <b-form-group id="addNewBoardDescriptionGroup"
+          <b-form-group id="AddNewTaskDescriptionGroup"
                         label="Description:"
-                        label-for="addNewBoardDescription">
-            <b-form-textarea id="addNewBoardDescription"
+                        label-for="AddNewTaskDescription">
+            <b-form-textarea id="AddNewTaskDescription"
                              placeholder="Enter description if it is needed"
                              :rows="3"
                              v-model="form.description">
@@ -28,7 +28,7 @@
           </b-form-group>
           <b-button type="submit"
                     variant="primary"
-                    @click.prevent="addNewBoard">
+                    @click.prevent="AddNewTask">
             Add
           </b-button>
           <b-button type="button"
@@ -44,27 +44,31 @@
 
 <script>
 export default {
-  name: 'AddNewBoardModal',
+  name: 'AddNewTaskModal',
   props: ['id', 'title', 'onSubmit'],
   data () {
     return {
       form: {
         title: '',
-        description: ''
+        description: '',
+        board: ''
       }
     };
   },
   methods: {
-    addNewBoard (e) {
+    AddNewTask (e) {
+      e.preventDefault();
       this.$props.onSubmit(this.$data.form).then(() => {
         this.hideModal();
       });
     },
-    showModal () {
-      this.$refs.AddNewBoardRef.show();
+    showModal (data) {
+      this.$data.form = Object.assign(this.$data.form, data);
+
+      this.$refs.AddNewTaskRef.show();
     },
     hideModal () {
-      this.$refs.AddNewBoardRef.hide();
+      this.$refs.AddNewTaskRef.hide();
     }
   }
 };

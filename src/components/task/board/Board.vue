@@ -3,26 +3,28 @@
     <h2>{{ board.title }}
       <b-button type="button"
                 variant="danger"
-                @click="onBoardDelete">
+                @click="onDelete">
         delete
       </b-button>
     </h2>
-    <TaskItemContainer  />
+    <TaskContainer v-for="(task, index) in board.tasks"
+                   v-bind:key="index"
+                   :task="task"/>
+    <b-button type="button"
+              variant="primary"
+              @click="onAddTask">
+      +
+    </b-button>
   </div>
 </template>
 
 <script>
-import TaskItemContainer from '../taskItem/TaskItemContainer';
+import TaskContainer from '../task/TaskContainer';
 
 export default {
   name: 'Board',
-  components: { TaskItemContainer },
-  props: ['board', 'onDelete'],
-  methods: {
-    onBoardDelete (e) {
-      this.$props.onDelete(this.board._id);
-    }
-  }
+  components: { TaskContainer },
+  props: ['board', 'onDelete', 'onAddTask']
 };
 </script>
 

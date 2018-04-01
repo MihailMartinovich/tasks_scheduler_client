@@ -1,11 +1,13 @@
 <template>
   <Board :board="board"
-         :on-delete="deleteBoard"/>
+         :on-delete="deleteBoard"
+         :onAddTask="onAddTask"/>
 </template>
 
 <script>
 import Board from './Board';
 import ActionTypes from '@/constants/actionTypesConstants';
+import { EventBus } from '../../../services/eventBus';
 
 export default {
   name: 'BoardContainer',
@@ -17,8 +19,11 @@ export default {
     };
   },
   methods: {
-    deleteBoard (id) {
-      return this.$store.dispatch(ActionTypes.DELETE_BOARD, id);
+    deleteBoard () {
+      return this.$store.dispatch(ActionTypes.DELETE_BOARD, this.board._id);
+    },
+    onAddTask () {
+      EventBus.$emit('openAddNewTaskModal', { board: this.board._id });
     }
   }
 };

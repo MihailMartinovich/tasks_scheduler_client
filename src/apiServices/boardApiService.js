@@ -2,7 +2,7 @@ import axios from './axiosWrapper';
 
 import Api from '@/constants/apiConstants';
 
-class AuthApiService {
+class BoardApiService {
   static async createBoard (data) {
     return axios.post(Api.BOARD, data);
   }
@@ -20,4 +20,4 @@ class AuthApiService {
   }
 }
 
-export default AuthApiService;
+export default BoardApiService;
