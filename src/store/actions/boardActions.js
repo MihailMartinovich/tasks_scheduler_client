@@ -41,5 +41,20 @@ export default {
   },
   [ActionTypes.RESET_CURRENT_BOARD]: (context) => {
     context.commit(MutationTypes.RESET_CURRENT_BOARD);
+  },
+  [ActionTypes.UPDATE_BOARD_LIST]: (context, data) => {
+    if (!data.length) {
+      return;
+    }
+
+    context.commit(MutationTypes.SET_BOARD_LIST, data);
+
+    return BoardApiService.updateBoards(data)
+      .then(response => {
+        return Promise.resolve(context.commit(MutationTypes.SET_BOARD_LIST, response.data));
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 };

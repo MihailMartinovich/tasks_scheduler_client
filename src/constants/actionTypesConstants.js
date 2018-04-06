@@ -15,6 +15,7 @@ module.exports = {
   GET_BOARD: 'getBoard',
   DELETE_BOARD: 'deleteBoard',
   RESET_CURRENT_BOARD: 'resetCurrentBoard',
+  UPDATE_BOARD_LIST: 'updateBoardList',
 
   // Task Action
   ADD_NEW_TASK: 'addNewTask',

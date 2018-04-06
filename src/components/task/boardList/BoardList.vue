@@ -1,27 +1,36 @@
 <template>
-  <div class="task-list">
+  <Draggable class="task-list"
+             v-model="boards"
+             @start="drag=true"
+             @end="drag=false">
     <BoardContainer v-for="(board, index) in boards"
                            v-bind:key="index"
                            :board="board">
     </BoardContainer>
-  </div>
+  </Draggable>
 </template>
 
 <script>
 import BoardContainer from '../board/BoardContainer';
+import Draggable from 'vuedraggable';
+function compare (a, b) {
+  return a.order - b.order;
+}
 
 export default {
   name: 'BoardList',
-  components: { BoardContainer },
+  components: { BoardContainer, Draggable },
+  props: ['onUpdateBoardList'],
   computed: {
-    boards () {
-      return this.$store.state.board.boardList;
+    boards: {
+      get () {
+        let boards = this.$store.state.board.boardList;
+        return boards.sort(compare);
+      },
+      set (data) {
+        this.$props.onUpdateBoardList(data);
+      }
     }
-  },
-  data () {
-    return {
-      msg: 'Board List'
-    };
   }
 };
 </script>

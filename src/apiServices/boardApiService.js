@@ -19,7 +19,11 @@ class BoardApiService {
     return axios.get(Api.BOARD + `/${id}`);
   }
 
-  static async updateBoard (data) {
+  static async updateBoard (data, id) {
+    return axios.put(Api.BOARD + `/${id}`, data);
+  }
+
+  static async updateBoards (data) {
     return axios.put(Api.BOARD, data);
   }
 }

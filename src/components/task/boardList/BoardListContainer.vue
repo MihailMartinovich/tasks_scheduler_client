@@ -17,7 +17,7 @@
                        :onUpdateTask="onUpdateTask"
                        ref="addNewTaskModal"/>
     </div>
-    <BoardList />
+    <BoardList :onUpdateBoardList="onUpdateBoardList"/>
     <router-view></router-view>
   </div>
 </template>
@@ -52,6 +52,13 @@ export default {
     },
     openTaskModal: function (data) {
       this.$refs.addNewTaskModal.showModal(data);
+    },
+    onUpdateBoardList (data) {
+      data.forEach((item, i) => {
+        item.order = ++i;
+      });
+
+      this.$store.dispatch(ActionTypes.UPDATE_BOARD_LIST, data);
     }
   },
   created () {
