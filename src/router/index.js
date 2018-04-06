@@ -4,6 +4,8 @@ import Router from 'vue-router';
 import BoardListContainer from '@/components/task/boardList/BoardListContainer';
 import LoginContainer from '@/components/login/LoginContainer';
 import RegisterContainer from '@/components/register/RegisterContainer';
+import BoardDetailsContainer from '@/components/task/boardDetails/BoardDetailsContainer';
+import TaskDetailsContainer from '@/components/task/taskDetails/TaskDetailsContainer';
 import store from '@/store/index';
 import Routes from '@/constants/routeConstants';
 
@@ -37,7 +39,18 @@ const router = new Router({
     {
       path: Routes.PROTECTED_ROUTES.HOME,
       name: 'Home',
-      component: BoardListContainer
+      component: BoardListContainer,
+      children: [
+        {
+          path: 'board/:id',
+          name: 'BoardDetails',
+          component: BoardDetailsContainer
+        },
+        {
+          path: 'task/:id',
+          name: 'TaskDetails',
+          component: TaskDetailsContainer
+        }]
     },
     {
       path: Routes.AUTH_ROUTES.LOG_IN,

@@ -16,10 +16,14 @@ class TaskApiService {
   }
 
   static async getTask (id) {
-    return axios.get(Api.TASK + `${id}`);
+    return axios.get(Api.TASK + `/${id}`);
   }
 
-  static async updateTask (data) {
+  static async updateTask (id, data) {
+    return axios.put(Api.TASK + `/${id}`, data);
+  }
+
+  static async updateTasks (data) {
     return axios.put(Api.TASK, data);
   }
 }

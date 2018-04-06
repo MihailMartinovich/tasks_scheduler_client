@@ -26,10 +26,17 @@
                              v-model="form.description">
             </b-form-textarea>
           </b-form-group>
-          <b-button type="submit"
+          <b-button v-if="form.mode === 'create'"
+                    type="submit"
                     variant="primary"
                     @click.prevent="AddNewTask">
             Add
+          </b-button>
+          <b-button v-else-if="form.mode === 'edit'"
+                    type="submit"
+                    variant="primary"
+                    @click.prevent="UpdateTask">
+            Edit
           </b-button>
           <b-button type="button"
                     variant="danger"
@@ -43,22 +50,48 @@
 </template>
 
 <script>
+const UPDATE_TASK_TEXT = 'Update task';
+const CREATE_TASK_TEXT = 'Create new task';
+
 export default {
   name: 'AddNewTaskModal',
-  props: ['id', 'title', 'onSubmit'],
+  props: ['id', 'onAddNewTask', 'onUpdateTask'],
   data () {
     return {
       form: {
         title: '',
         description: '',
-        board: ''
+        board: '',
+        mode: ''
       }
     };
   },
+  computed: {
+    title: function () {
+      let title = '';
+      switch (this.$data.form.mode) {
+        case 'create':
+          title = CREATE_TASK_TEXT;
+          break;
+        case 'edit':
+          title = UPDATE_TASK_TEXT;
+          break;
+        default:
+          title = CREATE_TASK_TEXT;
+          break;
+      }
+
+      return title;
+    }
+  },
   methods: {
     AddNewTask (e) {
-      e.preventDefault();
-      this.$props.onSubmit(this.$data.form).then(() => {
+      this.$props.onAddNewTask(this.$data.form).then(() => {
+        this.hideModal();
+      });
+    },
+    UpdateTask (e) {
+      this.$props.onUpdateTask(this.$data.form).then(() => {
         this.hideModal();
       });
     },

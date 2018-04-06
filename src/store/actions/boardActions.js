@@ -13,7 +13,7 @@ export default {
       });
   },
   [ActionTypes.GET_ALL_BOARDS]: (context) => {
-    return BoardApiService.getBoard()
+    return BoardApiService.getAllBoards()
       .then(response => {
         return Promise.resolve(context.commit(MutationTypes.SET_BOARD_LIST, response.data));
       })
@@ -29,5 +29,17 @@ export default {
       .catch(err => {
         console.log(err);
       });
+  },
+  [ActionTypes.GET_BOARD]: (context, id) => {
+    return BoardApiService.getBoard(id)
+      .then(response => {
+        return Promise.resolve(context.commit(MutationTypes.SET_CURRENT_BOARD, response.data));
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  },
+  [ActionTypes.RESET_CURRENT_BOARD]: (context) => {
+    context.commit(MutationTypes.RESET_CURRENT_BOARD);
   }
 };

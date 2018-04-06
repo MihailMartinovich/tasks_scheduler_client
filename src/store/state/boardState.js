@@ -1,6 +1,7 @@
 const boardState = {
   board: {
-    boardList: []
+    boardList: [],
+    currentBoard: null
   }
 };
 

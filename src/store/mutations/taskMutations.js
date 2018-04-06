@@ -11,7 +11,10 @@ export default {
     state.board.boardList = Object.assign([], state.board.boardList);
   },
   [MutationTypes.SET_CURRENT_TASK]: (state, data) => {
-    state.board.boardList = data;
+    state.task.currentTask = data;
+  },
+  [MutationTypes.RESET_CURRENT_TASK]: (state, data) => {
+    state.task.currentTask = null;
   },
   [MutationTypes.REMOVE_TASK]: (state, data) => {
     let board = state.board.boardList.find((item) => {
@@ -21,6 +24,32 @@ export default {
     board.tasks = board.tasks.filter((item) => {
       return item._id !== data._id;
     });
+
+    state.board.boardList = Object.assign([], state.board.boardList);
+  },
+  [MutationTypes.UPDATE_TASK]: (state, data) => {
+    let board = state.board.boardList.find((item) => {
+      return item._id === data.board;
+    });
+
+    let task = board.tasks.find((item) => {
+      return item._id === data._id;
+    });
+
+    Object.assign(task, data);
+
+    state.board.boardList = Object.assign([], state.board.boardList);
+  },
+  [MutationTypes.UPDATE_TASK_LIST]: (state, data) => {
+    if (!data.length) {
+      return;
+    }
+
+    let board = state.board.boardList.find((item) => {
+      return item._id === data[0].board;
+    });
+
+    board.tasks = data;
 
     state.board.boardList = Object.assign([], state.board.boardList);
   }

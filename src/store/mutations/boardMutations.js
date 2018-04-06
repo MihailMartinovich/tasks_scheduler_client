@@ -12,5 +12,11 @@ export default {
     state.board.boardList = state.board.boardList.filter((item) => {
       return item._id !== id;
     });
+  },
+  [MutationTypes.SET_CURRENT_BOARD]: (state, data) => {
+    state.board.currentBoard = data;
+  },
+  [MutationTypes.RESET_CURRENT_BOARD]: (state) => {
+    state.board.currentBoard = null;
   }
 };

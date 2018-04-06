@@ -1,31 +1,35 @@
 <template>
   <div class="task-item-container">
-    <h3>{{ msg }}</h3>
     <Task :task="task"
           :onDelete="onDelete"
-          :onUpdate="onUpdate"/>
+          :onUpdate="onUpdate"
+          :onOpenEditModal="onOpenEditModal"
+          :goToTaskDetails="goToTaskDetails"/>
   </div>
 </template>
 
 <script>
 import Task from './Task';
 import ActionTypes from '@/constants/actionTypesConstants';
+import { EventBus } from '../../../services/eventBus';
+import EventConstants from '../../../constants/eventConstants';
 
 export default {
   name: 'TaskContainer',
   components: { Task },
   props: [ 'task' ],
-  data () {
-    return {
-      msg: 'Task Container'
-    };
-  },
   methods: {
     onUpdate: function (task) {
-
+      this.$store.dispatch(ActionTypes.UPDATE_TASK, task);
     },
     onDelete: function (id) {
       return this.$store.dispatch(ActionTypes.DELETE_TASK, id);
+    },
+    onOpenEditModal (task) {
+      EventBus.$emit(EventConstants.OPEN_TASK_MODAL, Object.assign({}, task, { mode: 'edit' }));
+    },
+    goToTaskDetails (id) {
+      this.$router.push({name: 'TaskDetails', params: { id }});
     }
   }
 };

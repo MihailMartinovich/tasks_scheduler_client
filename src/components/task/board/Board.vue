@@ -1,15 +1,20 @@
 <template>
   <div class="task-list-item">
-    <h2>{{ board.title }}
+    <h2 @click="goToBoardDetails(board._id)">{{ board.title }}
       <b-button type="button"
                 variant="danger"
                 @click="onDelete">
         delete
       </b-button>
     </h2>
-    <TaskContainer v-for="(task, index) in board.tasks"
+    <Draggable v-model="tasks"
+               @start="drag=true"
+               @end="drag=false">
+      <TaskContainer v-for="(task, index) in tasks"
                    v-bind:key="index"
-                   :task="task"/>
+                   :task="task">
+      </TaskContainer>
+    </Draggable>
     <b-button type="button"
               variant="primary"
               @click="onAddTask">
@@ -20,11 +25,27 @@
 
 <script>
 import TaskContainer from '../task/TaskContainer';
+import Draggable from 'vuedraggable';
+
+function compare (a, b) {
+  return a.order - b.order;
+}
 
 export default {
   name: 'Board',
-  components: { TaskContainer },
-  props: ['board', 'onDelete', 'onAddTask']
+  components: { TaskContainer, Draggable },
+  props: ['board', 'onDelete', 'onAddTask', 'goToBoardDetails', 'onUpdateTaskList'],
+  computed: {
+    tasks: {
+      get () {
+        let tasks = this.board.tasks;
+        return tasks.sort(compare);
+      },
+      set (data) {
+        this.$props.onUpdateTaskList(data);
+      }
+    }
+  }
 };
 </script>
 

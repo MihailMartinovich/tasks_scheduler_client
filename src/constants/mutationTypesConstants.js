@@ -7,9 +7,14 @@ module.exports = {
   ADD_NEW_BOARD: 'addBoard',
   SET_BOARD_LIST: 'setBoardList',
   REMOVE_BOARD: 'removeBoard',
+  SET_CURRENT_BOARD: 'setCurrentBoard',
+  RESET_CURRENT_BOARD: 'resetCurrentBoard',
 
   // TASK MUTATIONS
   ADD_NEW_TASK: 'addTask',
-  SET_CURRENT_TASK: 'setCurrentList',
-  REMOVE_TASK: 'removeTask'
+  REMOVE_TASK: 'removeTask',
+  UPDATE_TASK: 'updateTask',
+  SET_CURRENT_TASK: 'setCurrentTask',
+  RESET_CURRENT_TASK: 'resetCurrentTask',
+  UPDATE_TASK_LIST: 'updateTaskList'
 };

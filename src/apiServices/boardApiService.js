@@ -11,8 +11,12 @@ class BoardApiService {
     return axios.delete(Api.BOARD + `/${id}`);
   }
 
-  static async getBoard (data) {
+  static async getAllBoards () {
     return axios.get(Api.BOARD);
+  }
+
+  static async getBoard (id) {
+    return axios.get(Api.BOARD + `/${id}`);
   }
 
   static async updateBoard (data) {

@@ -13,10 +13,12 @@
       </AddNewBoardModal>
       <AddNewTaskModal :id="'AddNewTaskModal'"
                        :title="addTaskModalTitle"
-                       :onSubmit="addNewTask"
+                       :onAddNewTask="addNewTask"
+                       :onUpdateTask="onUpdateTask"
                        ref="addNewTaskModal"/>
     </div>
     <BoardList />
+    <router-view></router-view>
   </div>
 </template>
 
@@ -26,6 +28,7 @@ import AddNewBoardModal from '../addNewBoardModal/AddNewBoardModal';
 import AddNewTaskModal from '../addNewTaskModal/AddNewTaskModal.vue';
 import ActionTypes from '@/constants/actionTypesConstants';
 import { EventBus } from '../../../services/eventBus';
+import EventConstants from '../../../constants/eventConstants';
 
 export default {
   name: 'BoardListContainer',
@@ -44,13 +47,16 @@ export default {
     addNewTask: function (data) {
       return this.$store.dispatch(ActionTypes.ADD_NEW_TASK, data);
     },
-    openAddNewTaskModal: function (data) {
+    onUpdateTask: function (data) {
+      return this.$store.dispatch(ActionTypes.UPDATE_TASK, data);
+    },
+    openTaskModal: function (data) {
       this.$refs.addNewTaskModal.showModal(data);
     }
   },
   created () {
     this.$store.dispatch(ActionTypes.GET_ALL_BOARDS);
-    EventBus.$on('openAddNewTaskModal', this.openAddNewTaskModal);
+    EventBus.$on(EventConstants.OPEN_TASK_MODAL, this.openTaskModal);
   }
 };
 </script>

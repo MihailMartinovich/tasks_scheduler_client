@@ -3,7 +3,6 @@
     <BoardContainer v-for="(board, index) in boards"
                            v-bind:key="index"
                            :board="board">
-
     </BoardContainer>
   </div>
 </template>
