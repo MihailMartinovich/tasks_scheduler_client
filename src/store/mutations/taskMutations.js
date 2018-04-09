@@ -38,6 +38,10 @@ export default {
 
     Object.assign(task, data);
 
+    if (state.board.currentBoard && state.board.currentBoard._id === board._id) {
+      state.board.currentBoard.tasks = Object.assign([], board.tasks);
+    }
+
     state.board.boardList = Object.assign([], state.board.boardList);
   },
   [MutationTypes.UPDATE_TASK_LIST]: (state, data) => {

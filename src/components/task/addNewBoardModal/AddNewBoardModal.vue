@@ -3,6 +3,7 @@
     <b-modal :id="id"
              :title="title"
              hide-footer
+             @show="onShow"
              ref="AddNewBoardRef">
       <div class="d-block">
         <b-form>
@@ -26,16 +27,18 @@
                              v-model="form.description">
             </b-form-textarea>
           </b-form-group>
-          <b-button type="submit"
-                    variant="primary"
-                    @click.prevent="addNewBoard">
-            Add
-          </b-button>
-          <b-button type="button"
-                    variant="danger"
-                    @click="hideModal">
-            Cancel
-          </b-button>
+          <div class="action-controls">
+            <b-button type="submit"
+                      variant="primary"
+                      @click.prevent="addNewBoard">
+              Add
+            </b-button>
+            <b-button type="button"
+                      variant="danger"
+                      @click="hideModal">
+              Cancel
+            </b-button>
+          </div>
         </b-form>
       </div>
     </b-modal>
@@ -65,7 +68,16 @@ export default {
     },
     hideModal () {
       this.$refs.AddNewBoardRef.hide();
+    },
+    onShow () {
+      this.$data.form = Object.assign(this.$data.form, {title: '', description: ''});
     }
   }
 };
 </script>
+
+<style lang="scss">
+.action-controls {
+  float: right;
+}
+</style>

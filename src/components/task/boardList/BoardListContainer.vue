@@ -91,6 +91,7 @@ export default {
 
     .title-container {
       margin-bottom: 10px;
+
     }
   }
 }

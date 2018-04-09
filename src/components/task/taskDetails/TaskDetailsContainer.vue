@@ -5,8 +5,6 @@
 
 <script>
 import ActionTypes from '@/constants/actionTypesConstants';
-// import { EventBus } from '../../../services/eventBus';
-// import EventConstants from '../../../constants/eventConstants';
 import TaskDetailsModal from '../../common/taskDetailsModal/TaskDetailsModal.vue';
 
 export default {

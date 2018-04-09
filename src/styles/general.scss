@@ -1,5 +1,7 @@
 @import './variables.scss';
 @import './common.scss';
+@import './transitions.scss';
+@import './modal.scss';
 
 html * {
   box-sizing: border-box;
@@ -7,7 +9,7 @@ html * {
 body {
   margin: 0;
   height: 100%;
-  //color: white;
+  color: $main-text-color;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

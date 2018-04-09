@@ -1,11 +1,13 @@
 <template>
   <header id="theHeader"
           class="grid-item">
-    <b-dropdown id="userMenuDropdown"
-                :text="username">
-      <b-dropdown-item>My Profile</b-dropdown-item>
-    </b-dropdown>
-    <b-button @click="logOutUser">Log Out</b-button>
+    <div class="header-menu-buttons">
+      <b-dropdown id="userMenuDropdown"
+                  :text="username">
+        <b-dropdown-item>My Profile</b-dropdown-item>
+      </b-dropdown>
+      <b-button @click="logOutUser">Log Out</b-button>
+    </div>
   </header>
 </template>
 
@@ -27,11 +29,15 @@ export default {
 };
 </script>
 
-<style>
-  #theHeader {
-    height: 50px;
-    background-color: rgba(50, 50, 50, 1);
-    color: white;
-    padding: 5px 20px;
+<style lang="scss">
+#theHeader {
+  height: 50px;
+  background-color: rgba(50, 50, 50, 1);
+  color: white;
+  padding: 5px 20px;
+
+  .header-menu-buttons {
+    float: right;
   }
+}
 </style>

@@ -41,7 +41,9 @@ export default {
   .board-list {
     display: flex;
     flex-direction: row;
+    padding-bottom: 20px;
     height: 100%;
+
     position: relative;
   }
 </style>

@@ -1,11 +1,13 @@
 <template>
   <b-modal :visible="visible"
-           :title="task.title"
+           :title="title"
            hide-footer
            @hidden="hidden"
            ref="BoardDetailsRef">
     <div class="d-block">
-      {{ task.description }}
+      <div class="description-container">
+        {{ description }}
+      </div>
     </div>
   </b-modal>
 </template>
@@ -17,6 +19,12 @@ export default {
   computed: {
     visible: function () {
       return !!this.$props.task;
+    },
+    title: function () {
+      return this.$props.task && this.$props.task.title;
+    },
+    description: function () {
+      return this.$props.task && this.$props.task.description;
     }
   }
 };

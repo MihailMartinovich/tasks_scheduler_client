@@ -3,6 +3,7 @@
     <b-modal :id="id"
              :title="title"
              hide-footer
+             @show="onShow"
              ref="AddNewTaskRef">
       <div class="d-block">
         <b-form>
@@ -25,24 +26,27 @@
                              :rows="3"
                              v-model="form.description">
             </b-form-textarea>
+
           </b-form-group>
-          <b-button v-if="form.mode === 'create'"
-                    type="submit"
-                    variant="primary"
-                    @click.prevent="AddNewTask">
-            Add
-          </b-button>
-          <b-button v-else-if="form.mode === 'edit'"
-                    type="submit"
-                    variant="primary"
-                    @click.prevent="UpdateTask">
-            Edit
-          </b-button>
-          <b-button type="button"
-                    variant="danger"
-                    @click="hideModal">
-            Cancel
-          </b-button>
+          <div class="action-controls">
+            <b-button v-if="form.mode === 'create'"
+                      type="submit"
+                      variant="primary"
+                      @click.prevent="AddNewTask">
+              Add
+            </b-button>
+            <b-button v-else-if="form.mode === 'edit'"
+                      type="submit"
+                      variant="primary"
+                      @click.prevent="UpdateTask">
+              Edit
+            </b-button>
+            <b-button type="button"
+                      variant="danger"
+                      @click="hideModal">
+              Cancel
+            </b-button>
+          </div>
         </b-form>
       </div>
     </b-modal>
@@ -102,7 +106,18 @@ export default {
     },
     hideModal () {
       this.$refs.AddNewTaskRef.hide();
+    },
+    onShow () {
+      if (this.$data.form.mode === 'create') {
+        this.$data.form = Object.assign(this.$data.form, {title: '', description: '', board: '', mode: ''});
+      }
     }
   }
 };
 </script>
+
+<style lang="scss">
+.action-controls {
+  float: right;
+}
+</style>

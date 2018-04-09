@@ -4,7 +4,8 @@
           :onDelete="onDelete"
           :onUpdate="onUpdate"
           :onOpenEditModal="onOpenEditModal"
-          :goToTaskDetails="goToTaskDetails"/>
+          :goToTaskDetails="goToTaskDetails"
+          :useTimeoutForDescription="useTimeoutForDescription"/>
   </div>
 </template>
 
@@ -17,7 +18,7 @@ import EventConstants from '../../../constants/eventConstants';
 export default {
   name: 'TaskContainer',
   components: { Task },
-  props: [ 'task' ],
+  props: [ 'task', 'useTimeoutForDescription' ],
   methods: {
     onUpdate: function (task) {
       this.$store.dispatch(ActionTypes.UPDATE_TASK, task);
@@ -41,8 +42,15 @@ export default {
 .task-container {
   border-radius: $border-radius;
 
+  &.sortable-ghost {
+    background-color: #8c8c8c;
+
+    & > * {
+      visibility: hidden;
+    }
+  }
   &:not(:last-child) {
   margin-bottom: 10px;
-   }
+  }
 }
 </style>
