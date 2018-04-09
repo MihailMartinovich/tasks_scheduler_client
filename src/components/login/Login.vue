@@ -9,7 +9,7 @@
                     placeholder="Enter Email"
                     required
                     type="email"
-                    v-model="form.email"
+                    v-model.trim="form.email"
       />
       </b-form-group>
 
@@ -20,7 +20,7 @@
                       placeholder="Enter Password"
                       required
                       type="password"
-                      v-model="form.password"
+                      v-model.trim="form.password"
         />
       </b-form-group>
       <b-button type="submit" variant="primary">Submit</b-button>

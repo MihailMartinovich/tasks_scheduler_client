@@ -14,7 +14,7 @@
                           placeholder="Please enter title"
                           required
                           type="text"
-                          v-model="form.title"
+                          v-model.trim="form.title"
             />
           </b-form-group>
           <b-form-group id="addNewBoardDescriptionGroup"

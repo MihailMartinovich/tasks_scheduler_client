@@ -1,5 +1,5 @@
 <template>
-  <div class="task-item-container">
+  <div class="task-container">
     <Task :task="task"
           :onDelete="onDelete"
           :onUpdate="onUpdate"
@@ -36,8 +36,13 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-.task-item-container {
+<style scoped lang="scss">
+@import '../../../styles/variables';
+.task-container {
+  border-radius: $border-radius;
 
+  &:not(:last-child) {
+  margin-bottom: 10px;
+   }
 }
 </style>

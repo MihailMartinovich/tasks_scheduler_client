@@ -1,6 +1,8 @@
 <template>
-  <header id="theHeader">
-    <b-dropdown id="userMenuDropdown" :text="username" class="m-md-2">
+  <header id="theHeader"
+          class="grid-item">
+    <b-dropdown id="userMenuDropdown"
+                :text="username">
       <b-dropdown-item>My Profile</b-dropdown-item>
     </b-dropdown>
     <b-button @click="logOutUser">Log Out</b-button>
@@ -27,7 +29,7 @@ export default {
 
 <style>
   #theHeader {
-    height: 40px;
+    height: 50px;
     background-color: rgba(50, 50, 50, 1);
     color: white;
     padding: 5px 20px;

@@ -9,7 +9,7 @@
                       placeholder="Enter Email"
                       required
                       type="email"
-                      v-model="form.email"
+                      v-model.trim="form.email"
         />
       </b-form-group>
 
@@ -20,7 +20,7 @@
                       placeholder="Username"
                       required
                       type="text"
-                      v-model="form.username"
+                      v-model.trim="form.username"
         />
       </b-form-group>
 
@@ -31,7 +31,7 @@
                       placeholder="Enter Password"
                       required
                       type="password"
-                      v-model="form.password"
+                      v-model.trim="form.password"
         />
       </b-form-group>
 
@@ -42,7 +42,7 @@
                       placeholder="Repeat Password"
                       required
                       type="password"
-                      v-model="form.repeatPassword"
+                      v-model.trim="form.repeatPassword"
         />
       </b-form-group>
       <b-button type="submit" variant="primary">Submit</b-button>

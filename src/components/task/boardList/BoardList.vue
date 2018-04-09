@@ -1,5 +1,5 @@
 <template>
-  <Draggable class="task-list"
+  <Draggable class="board-list"
              v-model="boards"
              @start="drag=true"
              @end="drag=false">
@@ -13,6 +13,7 @@
 <script>
 import BoardContainer from '../board/BoardContainer';
 import Draggable from 'vuedraggable';
+
 function compare (a, b) {
   return a.order - b.order;
 }
@@ -36,11 +37,11 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-.task-list {
-  display: flex;
-  flex-direction: row;
-  padding-bottom: 20px;
-  height: 100%;
-}
+<style lang="scss">
+  .board-list {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    position: relative;
+  }
 </style>

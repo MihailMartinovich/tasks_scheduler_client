@@ -1,25 +1,31 @@
 <template>
-  <div id="taskListContainer">
-    <div class="title-container">
-      <span class="title">{{ title }}</span>
-      <b-button :size="'sm'"
-                :variant="'secondary'"
-                v-b-modal.AddNewBoardModal>
-        Add new list
-      </b-button>
-      <AddNewBoardModal :id="'AddNewBoardModal'"
-                        :title="addBoardModalTitle"
-                        :onSubmit="addNewBoard">
-      </AddNewBoardModal>
-      <AddNewTaskModal :id="'AddNewTaskModal'"
-                       :title="addTaskModalTitle"
-                       :onAddNewTask="addNewTask"
-                       :onUpdateTask="onUpdateTask"
-                       ref="addNewTaskModal"/>
+  <div class="board-list-container">
+    <div class="board-list-container-inner">
+      <div class="title-container">
+        <h1 class="title">{{ title }}
+          <b-button class="add-new-board-button"
+                    :size="'sm'"
+                    :variant="'secondary'"
+                    v-b-modal.AddNewBoardModal
+                    :title="'click to add new board'">
+            <Icon name="plus"></Icon>
+          </b-button>
+        </h1>
+
+        <AddNewBoardModal :id="'AddNewBoardModal'"
+                          :title="addBoardModalTitle"
+                          :onSubmit="addNewBoard">
+        </AddNewBoardModal>
+        <AddNewTaskModal :id="'AddNewTaskModal'"
+                         :title="addTaskModalTitle"
+                         :onAddNewTask="addNewTask"
+                         :onUpdateTask="onUpdateTask"
+                         ref="addNewTaskModal"/>
+      </div>
+      <BoardList :onUpdateBoardList="onUpdateBoardList"/>
+      <router-view></router-view>
     </div>
-    <BoardList :onUpdateBoardList="onUpdateBoardList"/>
-    <router-view></router-view>
-  </div>
+    </div>
 </template>
 
 <script>
@@ -29,13 +35,14 @@ import AddNewTaskModal from '../addNewTaskModal/AddNewTaskModal.vue';
 import ActionTypes from '@/constants/actionTypesConstants';
 import { EventBus } from '../../../services/eventBus';
 import EventConstants from '../../../constants/eventConstants';
+import Icon from 'vue-awesome';
 
 export default {
   name: 'BoardListContainer',
-  components: { BoardList, AddNewBoardModal, AddNewTaskModal },
+  components: { BoardList, AddNewBoardModal, AddNewTaskModal, Icon },
   data () {
     return {
-      title: 'Board List Container',
+      title: 'What are your goals for today?',
       addBoardModalTitle: 'Add new board',
       addTaskModalTitle: 'Add new task'
     };
@@ -69,13 +76,22 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-#taskListContainer {
-  position: absolute;
+<style scoped lang="scss">
+.board-list-container {
+  position: relative;
   height: 100%;
   width: 100%;
-  overflow-y: hidden;
-  display: flex;
-  flex-direction: column;
+
+  .board-list-container-inner {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .title-container {
+      margin-bottom: 10px;
+    }
+  }
 }
 </style>

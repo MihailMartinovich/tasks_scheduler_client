@@ -1,9 +1,12 @@
 <template>
-  <div id="app">
+  <div id="app"
+       class="grid">
     <TheHeader />
 
-    <main class="main-content">
-      <slot />
+    <main class="main">
+      <div class="main-inner">
+        <slot />
+      </div>
     </main>
 
     <TheFooter />
@@ -20,20 +23,31 @@ export default {
 };
 </script>
 
-<style>
-  #theHeader {
-    flex: none;
-  }
+<style lang="scss">
+@import '../../../styles/variables';
+.grid {
+  min-height: 100vh;
+  display: grid;
+  grid-template-areas: 'header' 'main' 'footer';
+  grid-template-rows: 50px auto 50px;
+  grid-column-gap: 10px;
+  overflow: hidden;
 
-  .main-content {
-    flex: 1;
+  #theHeader { }
+
+  .main {
     width: 100%;
     position: relative;
-    background-color: rgb(233, 238, 240);
   }
 
-  #theFooter {
-    flex: none;
+  .main-inner {
+    width: 100%;
+    height:100%;
+    background-color: $main-color;
+    padding: 10px;
+    overflow-y: hidden;
   }
 
+  #theFooter { }
+}
 </style>
