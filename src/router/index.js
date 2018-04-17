@@ -1,10 +1,10 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-import BoardListContainer from '@/components/task/boardList/BoardListContainer';
+import BoardListContainer from '@/components/board/boardList/BoardListContainer';
 import LoginContainer from '@/components/login/LoginContainer';
 import RegisterContainer from '@/components/register/RegisterContainer';
-import BoardDetailsContainer from '@/components/task/boardDetails/BoardDetailsContainer';
+import BoardDetailsContainer from '@/components/board/boardDetails/BoardDetailsContainer';
 import TaskDetailsContainer from '@/components/task/taskDetails/TaskDetailsContainer';
 import store from '@/store/index';
 import Routes from '@/constants/routeConstants';

@@ -8,7 +8,7 @@
 
 <script>
 import Board from './Board';
-import ActionTypes from '@/constants/actionTypesConstants';
+import ActionTypes from '../../../constants/actionTypesConstants';
 import { EventBus } from '../../../services/eventBus';
 import EventConstants from '../../../constants/eventConstants';
 

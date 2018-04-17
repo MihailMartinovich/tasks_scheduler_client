@@ -10,6 +10,7 @@
                       required
                       type="email"
                       v-model.trim="form.email"
+                      v-auto-focus
         />
       </b-form-group>
 

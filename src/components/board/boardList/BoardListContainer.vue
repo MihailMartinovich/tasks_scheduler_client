@@ -31,11 +31,19 @@
 <script>
 import BoardList from './BoardList';
 import AddNewBoardModal from '../addNewBoardModal/AddNewBoardModal';
-import AddNewTaskModal from '../addNewTaskModal/AddNewTaskModal.vue';
+import AddNewTaskModal from '../../task/addNewTaskModal/AddNewTaskModal.vue';
 import ActionTypes from '@/constants/actionTypesConstants';
 import { EventBus } from '../../../services/eventBus';
 import EventConstants from '../../../constants/eventConstants';
 import Icon from 'vue-awesome';
+
+function setNewOrder (data) {
+  let sortedData = Object.assign([], data);
+  sortedData.forEach((item, i) => {
+    item.order = ++i;
+  });
+  return sortedData;
+}
 
 export default {
   name: 'BoardListContainer',
@@ -61,11 +69,7 @@ export default {
       this.$refs.addNewTaskModal.showModal(data);
     },
     onUpdateBoardList (data) {
-      data.forEach((item, i) => {
-        item.order = ++i;
-      });
-
-      this.$store.dispatch(ActionTypes.UPDATE_BOARD_LIST, data);
+      this.$store.dispatch(ActionTypes.UPDATE_BOARD_LIST, setNewOrder(data));
     }
   },
   created () {

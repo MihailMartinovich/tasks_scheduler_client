@@ -13,20 +13,18 @@
 <script>
 import BoardContainer from '../board/BoardContainer';
 import Draggable from 'vuedraggable';
-
-function compare (a, b) {
-  return a.order - b.order;
-}
+import SortMixin from '../../../mixins/sortMixin';
 
 export default {
   name: 'BoardList',
   components: { BoardContainer, Draggable },
   props: ['onUpdateBoardList'],
+  mixins: [SortMixin],
   computed: {
     boards: {
       get () {
         let boards = this.$store.state.board.boardList;
-        return boards.sort(compare);
+        return boards.sort(this.ascendingSort('order'));
       },
       set (data) {
         this.$props.onUpdateBoardList(data);

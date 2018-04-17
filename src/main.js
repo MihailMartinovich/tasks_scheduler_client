@@ -11,6 +11,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import './styles/general.scss';
 
+import './directives/index';
+
 Vue.config.productionTip = true;
 Vue.config.devtools = true;
 

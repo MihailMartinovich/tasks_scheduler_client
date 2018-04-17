@@ -63,17 +63,15 @@
 </template>
 
 <script>
-import TaskContainer from '../task/TaskContainer';
+import TaskContainer from '../../task/task/TaskContainer';
 import Draggable from 'vuedraggable';
 import Icon from 'vue-awesome';
-
-function compare (a, b) {
-  return a.order - b.order;
-}
+import SortMixin from '../../../mixins/sortMixin';
 
 export default {
   name: 'Board',
   components: { TaskContainer, Draggable, Icon },
+  mixins: [SortMixin],
   props: ['board', 'onDelete', 'onAddTask', 'goToBoardDetails', 'onUpdateTaskList'],
   data () {
     return {
@@ -96,7 +94,7 @@ export default {
             return item.completed === this.$data.selected;
           });
         }
-        return tasks.sort(compare);
+        return tasks.sort(this.ascendingSort('order'));
       },
       set (data) {
         this.$props.onUpdateTaskList(data);

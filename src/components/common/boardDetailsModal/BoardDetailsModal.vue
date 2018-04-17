@@ -23,14 +23,12 @@
 <script>
 import TaskContainer from '../../task/task/TaskContainer.vue';
 import Draggable from 'vuedraggable';
-
-function compare (a, b) {
-  return a.order - b.order;
-}
+import SortMixin from '../../../mixins/sortMixin';
 
 export default {
   name: 'BoardDetailsModal',
   props: ['board', 'hidden', 'onUpdateTaskList'],
+  mixins: [SortMixin],
   components: { TaskContainer, Draggable },
   computed: {
     visible: function () {
@@ -39,7 +37,7 @@ export default {
     tasks: {
       get () {
         let tasks = (this.$props.board && this.$props.board.tasks) || [];
-        return tasks.sort(compare);
+        return tasks.sort(this.ascendingSort('order'));
       },
       set (data) {
         this.$props.onUpdateTaskList(data);
