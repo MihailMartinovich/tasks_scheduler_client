@@ -101,7 +101,6 @@ export default {
     },
     showModal (data) {
       this.$data.form = Object.assign(this.$data.form, data);
-
       this.$refs.AddNewTaskRef.show();
     },
     hideModal () {
@@ -109,7 +108,7 @@ export default {
     },
     onShow () {
       if (this.$data.form.mode === 'create') {
-        this.$data.form = Object.assign(this.$data.form, {title: '', description: '', board: '', mode: ''});
+        this.$data.form = Object.assign(this.$data.form, {title: '', description: ''});
       }
     }
   }
